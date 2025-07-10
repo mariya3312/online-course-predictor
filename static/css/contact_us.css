@@ -1,0 +1,146 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styling */
+header {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background: #1e1e1e;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #0ef; /* Fluorescent blue */
+}
+
+/* Navigation Bar */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background: #222;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #0ef;
+    font-size: 1.2rem;
+    padding: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #00d1d1;
+}
+
+/* Contact Form Section */
+.contact-form {
+    max-width: 600px;
+    margin: 120px auto 40px auto; /* Ensures space from fixed header */
+    padding: 30px;
+    background: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 255, 255, 0.3);
+    text-align: center;
+}
+
+.contact-form h2 {
+    font-size: 2rem;
+    color: #0ef;
+}
+
+.contact-form p {
+    font-size: 1rem;
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #0ef;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: #333;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+input:focus, textarea:focus {
+    background: #444;
+    box-shadow: 0px 4px 8px rgba(0, 255, 255, 0.3);
+}
+
+/* Submit Button */
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    background: #0ef;
+    color: #000;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #00d1d1;
+    box-shadow: 0px 4px 12px rgba(0, 255, 255, 0.5);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #1e1e1e;
+    color: #bbb;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Course Completion Prediction</title>
+    <link rel="stylesheet" href="/static/css/predict.css">
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2em; }
+      label { display: inline-block; width: 250px; margin-top: 0.5em; }
+      input, select { margin-top: 0.5em; }
+    </style>
+    <script>
+      function toggleMenu() {
+          var menu = document.getElementById("menu-options");
+          menu.style.display = (menu.style.display === "block") ? "none" : "block";
+      }
+      </script>
+   <style>
+    .hamburger-menu {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu-content {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu-content a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 5px 0;
+}
+
+.menu-content a:hover {
+    background-color: #f0f0f0;
+}
+
+   </style>
+
+
+    <style>
+      body {
+          background-image: url('/static/images/predicts.gif');
+          background-size: cover;
+          
+          background-attachment: fixed;
+          background-position: center;
+      }
+  </style>
+
+  </head>
+  <body>
+    <h1>Enter Course Details</h1>
+    <form action="/predict" method="post">
+      <h3>Numeric Features</h3>
+      {% for feature in numeric_features %}
+        <div>
+          <label for="{{ feature }}">
+            {% if feature == 'QuizScores' %}
+              Quiz Score (%):
+            {% elif feature == 'TimeSpentOnCourse' %}
+              Time spent on course:
+            {% elif feature == 'NumberOfVideosWatched' %}
+              No: of videos watched:
+            {% elif feature == 'NumberOfQuizzesTaken' %}
+              No: of quizzes taken:
+            {% elif feature == 'DeviceType' %}
+              Device Type (Desktop: 0 Mobile: 1):
+            {% else %}
+              {{ feature }}:
+            {% endif %}
+          </label>
+          <input type="text" id="{{ feature }}" name="{{ feature }}" required>
+        </div>
+      {% endfor %}
+      
+      <h3>Categorical Features</h3>
+      {% for feature in categorical_features %}
+        <div>
+          <label for="{{ feature }}">{% if feature == 'CourseCategory' %}
+            Course category:
+          {% else %}
+            {{ feature }}:
+          {% endif %}</label>
+          <select id="{{ feature }}" name="{{ feature }}">
+            {% for option in cat_options[feature] %}
+              <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endfor %}
+      
+      <br>
+      <input type="submit" value="Predict">
+     
+      
+    
+    <div class="hamburger-menu">
+      <span onclick="toggleMenu()">☰</span>
+      <div id="menu-options" class="menu-content" style="display: none;">
+          <a href="{{ url_for('user_dashboard') }}">User Dashboard</a>
+          <a href="/">Home</a>
+
+      </div>
+  </div>
+      
+    </form>
+  </body>
+</html>

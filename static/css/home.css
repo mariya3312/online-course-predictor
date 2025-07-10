@@ -1,0 +1,204 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Default Light Mode */
+    --bg-color: #ffffff;
+    --text-color: #333;
+    --header-bg: #f8f9fa;
+    --nav-bg: #eee;
+    --link-color: #333;
+    --link-hover: #f39c12;
+    --dropdown-bg: #ddd;
+    --dropdown-hover: #ccc;
+    --hero-text: #222;
+    --paragraph-color: #555;
+    --footer-bg: #f8f8f8;
+    --footer-text: #222;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #191928;
+    --text-color: #fff;
+    --header-bg: transparent;
+    --nav-bg: #333;
+    --link-color: #fff;
+    --link-hover: #f39c12;
+    --dropdown-bg: #444;
+    --dropdown-hover: #555;
+    --hero-text: rgb(245, 239, 239);
+    --paragraph-color: #d1b8b8;
+    --footer-bg: #282828;
+    --footer-text: #fff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--header-bg);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+header h1 {
+    color: var(--text-color);
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+/* Theme Toggle Button (Small Symbol) */
+#theme-toggle {
+    padding: 5px 10px; /* Smaller size */
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em; /* Adjust icon size */
+    background: none; /* No background */
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    color: var(--link-hover);
+}
+
+/* Navigation Styles */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+nav ul li a:hover {
+    color: var(--link-hover);
+}
+
+/* Dropdown Menu */
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background-color: var(--dropdown-bg);
+    padding: 10px 0;
+    width: 200px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul li ul li a {
+    padding: 10px 20px;
+    display: block;
+}
+
+nav ul li ul li a:hover {
+    background-color: var(--dropdown-hover);
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+    flex-wrap: wrap;
+}
+
+/* Text Container for Caption */
+.text-container {
+    max-width: 600px;
+    text-align: left;
+    flex: 1;
+}
+
+.text-container h2 {
+    font-size: 3em;
+    color: var(--hero-text);
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Paragraph Style */
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: var(--paragraph-color);
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Right Side Image */
+.image-container {
+    flex-shrink: 0;
+    margin-top: 20px;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.image-container img {
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.privacy-link {
+    display: block;
+    margin-top: 10px; /* Adjust spacing */
+    font-size: 16px;
+    margin-left: 550px;
+}
+
+.privacy-link a {
+    color: #85b1e3; /* Adjust link color */
+    text-decoration: underline;
+}
+
+

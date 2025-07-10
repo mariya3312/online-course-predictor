@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Certificates - eCourseWay</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <h2>Your Certificates</h2>
+
+    <!-- Mark as Completed Form -->
+    <h3>Mark a Course as Completed</h3>
+    <form method="POST" action="{{ url_for('mark_completed') }}">
+        <label for="course_name">Course Name (Optional):</label>
+        <input type="text" name="course_name" id="course_name" placeholder="Enter course name">
+        
+        <label for="course_category">Course Category:</label>
+        <select name="course_category" id="course_category" required>
+            <option value="Arts">Arts</option>
+            <option value="Business">Business</option>
+            <option value="Health">Health</option>
+            <option value="Programming">Programming</option>
+            <option value="Science">Science</option>
+            <!-- Add more categories as needed -->
+        </select>
+        
+        <button type="submit">Mark as Completed</button>
+    </form>
+
+    <!-- Display Earned Certificates -->
+    <h3>Your Earned Certificates</h3>
+    {% if certificates %}
+        <ul>
+            {% for cert in certificates %}
+                <li>
+                    Certificate for 
+                    {% if cert.course_name %} 
+                        {{ cert.course_name }}
+                    {% else %} 
+                        {{ cert.course_category }}
+                    {% endif %} 
+                    - Issued on {{ cert.issued_date.strftime('%Y-%m-%d') }}
+                    <a href="{{ url_for('download_certificate', cert_id=cert.id) }}" target="_blank">Download PDF</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No certificates earned yet.</p>
+    {% endif %}
+
+</body>
+</html>

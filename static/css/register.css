@@ -1,0 +1,115 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Header Styling (Positioned Above the Box with More Space) */
+header {
+    margin-bottom: 50px; /* Space between header and form */
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #29b5bf; /* Fluorescent Blue */
+    margin-bottom: 0; /* No extra margin since we set it in header */
+    animation: fadeInHeader 1.5s ease-in-out;
+}
+
+/* Container Styling */
+main {
+    background-color: #141414;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    text-align: center;
+    width: 350px;
+    animation: fadeIn 1s ease-in-out;
+    position: relative;
+}
+
+/* Form Input Styling */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    background-color: #1c1c1c;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+    outline: none;
+
+    /* Neon Glow */
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+}
+
+/* Input Focus Effect */
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #00f0ff;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+}
+
+/* Button Styling */
+button {
+    background: linear-gradient(45deg, #00f0ff, #00b3ff);
+    color: #0a0a0a;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    
+    /* Neon Glow */
+    box-shadow: 0 0 15px rgba(44, 67, 69, 0.8);
+}
+
+
+
+/* Error Message Styling */
+#password_error {
+    font-size: 0.9rem;
+    color: red;
+    display: none;
+    margin-top: -10px;
+}
+
+/* Back to Login Link */
+p a {
+    color: #00f0ff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInHeader {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

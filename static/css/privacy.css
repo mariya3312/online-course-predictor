@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h2, h3 {
+    color: #ffcc00; /* Yellow headings for contrast */
+}
+
+p {
+    color: #ddd; /* Light gray text */
+    line-height: 1.6;
+}
+
+a {
+    color: #00aaff; /* Light blue links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}

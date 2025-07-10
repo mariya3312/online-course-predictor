@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Discussion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>Community Discussion</h2>
+
+    <!-- Show Existing Discussions -->
+    <ul>
+        {% for discussion in discussions %}
+            <li>
+                <strong>{{ discussion.user.username }}</strong>: {{ discussion.content }}
+                <br><small>{{ discussion.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+
+                <!-- Replies Section -->
+                <ul>
+                    {% for reply in discussion.replies %}
+                        <li>
+                            <strong>{{ reply.user.username }}</strong>: {{ reply.content }}
+                            <br><small>{{ reply.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <!-- Form to Reply -->
+                <form action="{{ url_for('post_reply', discussion_id=discussion.id) }}" method="POST">
+                    <textarea name="content" placeholder="Reply to this discussion..." required></textarea>
+                    <button type="submit">Reply</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Form to Post New Discussions -->
+    <h3>Start a New Discussion</h3>
+    <form action="{{ url_for('post_discussion') }}" method="POST">
+        <textarea name="content" placeholder="Start a discussion..." required></textarea>
+        <button type="submit">Post</button>
+    </form>
+
+    <a href="{{ url_for('user_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

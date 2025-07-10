@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+   
+    <style>
+      /* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #080202; /* Light grey background (matches Admin Dashboard) */
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    width: 80%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px #ccc;
+}
+
+/* Header */
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Prediction History Table */
+.history {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* Feedback Section */
+.feedback {
+    margin-top: 30px;
+    text-align: center;
+}
+
+textarea {
+    width: 80%;
+    height: 80px;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: black;
+    resize: none;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: darkblue;
+}
+
+.logout {
+    display: block;
+    text-align: center;
+    margin-left: 550px;
+        }
+.logout a {
+    background: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+        }
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .dashboard-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+}
+  
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Welcome, {{ user.username }}</h2>
+
+        <section class="history">
+            <button id="toggle-history" onclick="toggleHistory()">Prediction History</button>
+
+<!-- Prediction History Table (Initially Hidden) -->
+<div id="history-section" style="display: none;">
+            <h3>Prediction History</h3>
+            <table>
+                <tr>
+                    <th>Predicted Result</th>
+                    <th>Date</th>
+                </tr>
+                {% for prediction in predictions %}
+                <tr>
+                    <td>{{ prediction.prediction_result }}</td>
+                     <td>{{ prediction.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <script>
+            function toggleHistory() {
+                var section = document.getElementById("history-section");
+                var button = document.getElementById("toggle-history");
+        
+                if (section.style.display === "none") {
+                    section.style.display = "block";
+                    button.innerText = "Hide Prediction History";
+                } else {
+                    section.style.display = "none";
+                    button.innerText = "Prediction History";
+                }
+            }
+        </script>
+
+        </section>
+        
+        <section>
+            <button id="toggle-progress" onclick="toggleProgress()">Your Course Progress</button>
+
+<!-- Course Progress Section (Initially Hidden) -->
+<div id="progress-section" style="display: none;">
+            <h3>Your Course Progress</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for progress in course_progress %}
+                    <tr>
+                        <td>Course #{{ progress.id }}</td>
+                        <td>
+                            {% if progress.prediction == "Yes" %}
+                                <span style="color: green; font-weight: bold;">Completed ✅</span>
+                            {% else %}
+                                <span style="color: red; font-weight: bold;">Not Completed ❌</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="2">No course progress available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- JavaScript to Toggle Visibility -->
+        <script>
+            function toggleProgress() {
+                var section = document.getElementById("progress-section");
+                var button = document.getElementById("toggle-progress");
+        
+                if (section.style.display === "none") {
+                    section.style.display = "block";
+                    button.innerText = "Hide Course Progress";
+                } else {
+                    section.style.display = "none";
+                    button.innerText = "Your Course Progress";
+                }
+            }
+        </script>
+            
+            
+            </section>
+
+            <h3>Save Ypur Favorite Courses</h3>
+            <form action="{{ url_for('save_favorite') }}" method="post">
+                <input type="text" name="course_name" placeholder="Course Name" required>
+                <input type="url" name="course_link" placeholder="Course Link" required>
+                <button type="submit">Save</button>
+            </form>
+
+            <!-- Saved Favorite Courses Button -->
+<button id="toggle-favorites" onclick="toggleFavorites()">Your Favorite Courses</button>
+
+<!-- Saved Favorite Courses Section (Initially Hidden) -->
+<div id="favorites-section" style="display: none;">
+    <h3>Your Saved Favorite Courses</h3>
+    <table>
+        <tr>
+            <th>Course Name</th>
+            <th>Link</th>
+        </tr>
+        {% for course in favorite_courses %}
+        <tr>
+            <td>{{ course.course_name }}</td>
+            <td><a href="{{ course.course_link }}" target="_blank">Go to Course</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<!-- JavaScript to Toggle Visibility -->
+<script>
+    function toggleFavorites() {
+        var section = document.getElementById("favorites-section");
+        var button = document.getElementById("toggle-favorites");
+
+        if (section.style.display === "none") {
+            section.style.display = "block";
+            button.innerText = "Hide Favorite Courses";
+        } else {
+            section.style.display = "none";
+            button.innerText = "Your Favorite Courses";
+        }
+    }
+</script>
+
+<br><br>
+<a href="{{ url_for('discussion_page') }}"></a>
+
+
+
+
+
+        <section class="feedback">
+            <h3>Submit Feedback</h3>
+            <form method="POST" action="{{ url_for('submit_feedback') }}">
+                <textarea name="feedback" placeholder="Enter your feedback here..." required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+
+            <button id="toggleFeedback" style="text-align: left; display: block;">View Feedback</button>
+
+            <!-- Feedback List (Initially Hidden) -->
+            <div id="feedbackList" style="display: none;">
+        <ul>
+           {% for feedback in feedbacks %}
+        <li  style="text-align: left;">{{ feedback.text }}</li>
+           {% endfor %}
+        </ul>
+
+        <script>
+            document.getElementById("toggleFeedback").addEventListener("click", function() {
+                var feedbackDiv = document.getElementById("feedbackList");
+                if (feedbackDiv.style.display === "none") {
+                    feedbackDiv.style.display = "block";
+                    this.textContent = "Hide Feedback";  // Change button text
+                } else {
+                    feedbackDiv.style.display = "none";
+                    this.textContent = "View Feedback";  // Reset button text
+                }
+            });
+        </script>
+
+        </section>
+        <div class="menu-container">
+            <button class="menu-btn" onclick="toggleMenu()">☰</button>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="{{ url_for('logout') }}">Logout</a>
+                 <a href="/">Home</a>
+                <form action="{{ url_for('delete_account') }}" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                    <button type="submit">Delete Account</button>
+                </form>
+            </div>
+        </div>
+        <style>.menu-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+        .menu-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            width: 150px;
+        }
+        
+        .dropdown-menu a, .dropdown-menu button {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            text-align: left;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .dropdown-menu button {
+            color: red;
+        }
+        
+        .dropdown-menu a:hover, .dropdown-menu button:hover {
+            background: #f0f0f0;
+        }
+        </style>
+       <script>
+        function toggleMenu() {
+            var menu = document.getElementById("dropdownMenu");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
+        
+        // Close menu if clicked outside
+        document.addEventListener("click", function(event) {
+            var menu = document.getElementById("dropdownMenu");
+            var button = document.querySelector(".menu-btn");
+        
+            if (event.target !== menu && event.target !== button) {
+                menu.style.display = "none";
+            }
+        });
+        </script>
+        
+    </div>
+</body>
+</html>

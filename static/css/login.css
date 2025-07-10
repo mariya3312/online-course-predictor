@@ -1,0 +1,155 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1e1e1e, #444); /* Dark background gradient */
+    color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 50px; /* Added more space between heading and login box */
+}
+
+h1 {
+    font-size: 2cm;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    animation: fadeIn 1.5s ease-in-out;
+    position:relative;
+    left:-40px;
+}
+
+/* Main Container Styling */
+main {
+    background-color: rgba(0, 0, 0, 0.7); /* Transparent black background */
+    padding: 40px 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeInContainer 1s ease-out;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Label Styling */
+label {
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: #ddd;
+}
+
+/* Input Fields Styling */
+input[type="text"],
+input[type="password"] {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #444;
+    border-radius: 5px;
+    font-size: 1.1em;
+    background-color: #222;
+    color: #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #74ebd5;
+    box-shadow: 0 0 5px rgba(116, 235, 213, 0.6);
+    outline: none;
+}
+
+/* Button Styling */
+button {
+    background-color: #74ebd5; /* Bright color for button */
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #65d2c7;
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Link Styling */
+p {
+    font-size: 1em;
+    color: #ddd;
+    margin-top: 20px;
+}
+
+a {
+    color: #74ebd5;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #65d2c7;
+    text-decoration: underline;
+}
+
+/* Keyframes Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInContainer {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Apply Animations */
+header h1 {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+main {
+    animation: fadeInContainer 1s ease-out;
+}

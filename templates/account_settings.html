@@ -1,0 +1,4 @@
+<h3>Delete Account</h3>
+<form action="{{ url_for('delete_account') }}" method="post" onsubmit="return confirm('Are you sure? This action is irreversible!');">
+    <button type="submit" class="delete-btn">Delete My Account</button>
+</form>

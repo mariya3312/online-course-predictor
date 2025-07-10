@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Discussion</title>
+</head>
+<body>
+
+    <h2>Community Discussion</h2>
+
+    <!-- Form to Add a New Query -->
+    <form method="POST" action="{{ url_for('add_query') }}">
+        <input type="hidden" name="user_id" value="1">  <!-- Replace with actual user ID -->
+        <textarea name="query_text" placeholder="Ask a question..." required></textarea>
+        <button type="submit">Post Query</button>
+    </form>
+
+    <!-- Display Queries and Replies -->
+    <div id="discussion-section">
+        <h3>Recent Discussions</h3>
+        <ul id="query-list"></ul>
+    </div>
+
+    <script>
+        async function loadQueries() {
+            const response = await fetch("{{ url_for('get_queries') }}");
+            const data = await response.json();
+            const queryList = document.getElementById("query-list");
+            queryList.innerHTML = "";
+
+            data.forEach(query => {
+                let queryItem = document.createElement("li");
+                queryItem.innerHTML = `
+                    <strong>User ${query.user_id}:</strong> ${query.query_text} <br>
+                    <small>${query.timestamp}</small> 
+                    <button onclick="showReplyForm(${query.id})">Reply</button>
+                    <ul id="replies-${query.id}">
+                        ${query.replies.map(reply => `
+                            <li><strong>User ${reply.user_id}:</strong> ${reply.reply_text} <small>(${reply.timestamp})</small></li>
+                        `).join('')}
+                    </ul>
+                    <div id="reply-form-${query.id}" style="display:none;">
+                        <form method="POST" action="{{ url_for('add_reply') }}">
+                            <input type="hidden" name="user_id" value="1"> <!-- Replace with actual user ID -->
+                            <input type="hidden" name="query_id" value="${query.id}">
+                            <textarea name="reply_text" placeholder="Write a reply..." required></textarea>
+                            <button type="submit">Reply</button>
+                        </form>
+                    </div>
+                `;
+                queryList.appendChild(queryItem);
+            });
+        }
+
+        function showReplyForm(queryId) {
+            document.getElementById(`reply-form-${queryId}`).style.display = "block";
+        }
+
+        loadQueries();
+    </script>
+
+</body>
+</html>

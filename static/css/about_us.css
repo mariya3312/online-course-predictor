@@ -1,0 +1,148 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #181818;
+    color: #e0e0e0;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Header styling */
+header {
+    background-color: #121212;
+    color: #ffffff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.8em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #4fc3f7; /* Light blue for a cool accent */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+header nav ul li {
+    font-size: 1.2em;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+header nav ul li a:hover {
+    color: #4fc3f7; /* Highlight color */
+}
+
+/* Main content styling */
+main {
+    padding: 50px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: transparent; /* No background box, it's transparent */
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h3 {
+    font-size: 2.2em;
+    color: #4fc3f7; /* Light blue for headings */
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #dcdcdc;
+}
+
+/* Benefits section styling */
+h3 + p {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+h3 + p span {
+    font-size: 1.2em;
+}
+
+h3 + p span::before {
+    content: "🔹";
+    margin-right: 10px;
+}
+
+/* Styling for emphasis and important notes */
+strong {
+    color: #4fc3f7; /* Light blue for emphasis */
+}
+
+/* Footer and links styling */
+footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #dcdcdc;
+}
+
+footer a {
+    color: #4fc3f7;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2em;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    header nav ul li {
+        margin: 10px 0;
+    }
+
+    main {
+        padding: 30px;
+    }
+
+    h3 {
+        font-size: 1.8em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    h3 + p span {
+        font-size: 1em;
+    }
+}

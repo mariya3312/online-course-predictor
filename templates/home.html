@@ -1,0 +1,64 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Course Predictor</title>
+
+    <link rel="stylesheet" href="/static/css/home.css">
+</head>
+
+<body>
+    <header>
+        <h1>e.CourseWay</h1>
+
+        <nav>
+            <ul>
+              <!-- Small Icon for Theme Toggle -->
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/about_us">About</a></li>
+                <li><a href="/contact_us">Contact</a></li>
+                <li><button id="theme-toggle">🔅</button></li> 
+              
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="text-container">
+                <h2>The Future of <br> Your Online Learning!<h2>
+            </div>
+            <div class="image-container">
+                <img src="/static/images/home.jpg" alt="Online Learning Illustration">
+            </div>
+            <div>
+                <p>Welcome to <strong>e.CourseWay</strong>, a cutting-edge platform designed to help learners make informed decisions about online courses. Whether you're a beginner or an experienced learner, Course Predictor uses advanced algorithms to predict your likelihood of completing a course, based on various factors like time spent, engagement level, and past performance.</p>
+            </div>
+            <div class="privacy-link">
+                <a href="/privacy">Privacy & Policy</a>
+            </div>            
+        </section>
+    </main>
+
+    <!-- JavaScript for Theme Toggle -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const themeToggleButton = document.getElementById("theme-toggle");
+            const currentTheme = localStorage.getItem("theme") || "light";
+
+            document.documentElement.setAttribute("data-theme", currentTheme);
+            themeToggleButton.textContent = currentTheme === "dark" ? "🔆" : "🔅";
+
+            themeToggleButton.addEventListener("click", () => {
+                const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                document.documentElement.setAttribute("data-theme", newTheme);
+                localStorage.setItem("theme", newTheme);
+                themeToggleButton.textContent = newTheme === "dark" ? "🔆" : "🔅";
+            });
+        });
+    </script>
+
+</body>
+</html>
