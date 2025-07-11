@@ -15,8 +15,6 @@ This is a machine learning-based web application that predicts whether a user wi
 - SQLite, Scikit-learn
 - Google Colab (Model training)
 
-## 🔗 Live Demo (optional)
-_If deployed online, you can add link here_
 
 ## 📁 Dataset Features Used
 - Time Spent on Course
